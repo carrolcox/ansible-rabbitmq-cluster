@@ -1,0 +1,13 @@
+# {{ ansible_managed }}
+
+listeners.tcp.1 = 127.0.0.1:{{ rabbitmq_amqp_port }}
+listeners.tcp.2 = {{ rabbitmq_ip }}:{{ rabbitmq_amqp_port }}
+
+{% if enable_tls %}
+listeners.ssl.default  = {{ rabbitmq_tls_port }}
+ssl_options.cacertfile = {{ cacertfile_dest }}
+ssl_options.certfile   = {{ certfile_dest }}
+ssl_options.keyfile    = {{ keyfile_dest }}
+ssl_options.verify     = {{ tls_verify }}
+ssl_options.fail_if_no_peer_cert = {{tls_fail_if_no_peer_cert|lower}}
+{% endif %}
