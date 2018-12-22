@@ -1,6 +1,7 @@
-# I am a complete /etc/rabbitmq/rabbitmq-env.conf file.
-# Comment lines start with a hash character.
-# This is a /bin/sh script file - use ordinary envt var syntax
+# {{ ansible_managed }}
+#
+# https://www.rabbitmq.com/configure.html#environment-env-file-unix
+#
 RABBITMQ_USE_LONGNAME={{ rabbitmq_use_longname }}
 RABBITMQ_NODE_PORT={{ rabbitmq_node_port }}
 ERL_EPMD_PORT={{ rabbitmq_epmd_port }}
