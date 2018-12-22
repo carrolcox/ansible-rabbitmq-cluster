@@ -1,20 +1,5 @@
 ---
-# Whether you need to update hosts file or not, default false.
-# This is useful when you are using AWS EC2 instance, whose default hostname is too long and doesn't have a meaning,
-# like "ip-10-101-50-12.eu-central-1.compute.internal", but you want to use something shorter and meaningful as hostname.
-# In this case you need to set this variable to true in order to update the hosts file, and you need to define a variable named "rabbitmq_hosts",
-# with the following format:
-#
-# rabbitmq_hosts: |
-#   node-1-ip node-1-FQDN
-#   node-2-ip node-2-FQDN
-#
-# example:
-#
-# rabbitmq_hosts: |
-#   10.0.0.10 eu-central-1-mq-master   (whatever the command `hostname -f` outputs on this host)
-#   10.0.0.11 eu-central-1-mq-slave-01 (whatever the command `hostname -f` outputs on this host)
-#
+
 update_hosts: false
 
 erlang_apt_repo_keyid: "6026DFCA"
