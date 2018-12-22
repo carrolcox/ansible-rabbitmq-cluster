@@ -1,8 +1,9 @@
 ---
-- include_tasks: repository.yml
 
 - include_tasks: hosts.yml
   when: update_hosts
+
+- include_tasks: repository.yml
 
 - include_tasks: install.yml
 
