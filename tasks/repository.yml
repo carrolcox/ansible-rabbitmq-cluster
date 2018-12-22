@@ -1,14 +1,36 @@
 ---
-# Setup installation repositories
-# Standart repository for Debian / Ubuntu (https://www.rabbitmq.com/install-debian.html)
-- name: import repository key
+
+- name: Add apt key for additional Erlang repository
   apt_key:
-    url: https://dl.bintray.com/rabbitmq/Keys/rabbitmq-release-signing-key.asc
+    id: "{{ erlang_apt_repo_keyid }}"
+    url: "{{ erlang_apt_repo_key }}"
     state: present
 
-- name: add apt repository
+- name: Add repository for Erlang packages
   apt_repository:
-    repo: "deb https://dl.bintray.com/rabbitmq/debian xenial main"
-    update_cache: yes
+    repo: "{{ erlang_apt_repo_string }}"
+
+- name: Create apt config to pin Bintray Erlang repo
+  blockinfile:
+    path: /etc/apt/preferences.d/erlang
+    block: |
+      Package: erlang*
+      Pin: release o=Bintray
+      Pin-Priority: 1000
+    create: yes
+
+- name: Add apt key for additional RabbitMQ repository
+  apt_key:
+    id: "{{ rabbitmq_apt_repo_keyid }}"
+    url: "{{ rabbitmq_apt_repo_key }}"
     state: present
+
+- name: Add repository for RabbitMQ packages
+  apt_repository:
+    repo: "{{ rabbitmq_apt_repo_string }}"
+
+- name: Update apt cache
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
 
