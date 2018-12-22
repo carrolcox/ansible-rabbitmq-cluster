@@ -1,13 +1,14 @@
 ---
-- name: make sure rabbitmq server is up
+
+- name: Make sure that RabbitMQ service is up
   service:
     name: rabbitmq-server
     state: started
 
-- name: make sure rabbitmq app is up
+- name: Make sure that RabbitMQ app is up
   command: rabbitmqctl start_app
 
-- name: check if already in cluster
+- name: Check if node is already in cluster
   command: rabbitmqctl cluster_status
   register: cluster_status
   changed_when: false

@@ -1,11 +1,16 @@
 ---
-# Handlers for RabbitMQ
+
 - name: restart rabbitmq-server
-  service: name=rabbitmq-server state=restarted
+  service:
+    name: rabbitmq-server
+    state: restarted
 
 - name: start rabbitmq-server
-  service: name=rabbitmq-server state=started
+  service:
+    name: rabbitmq-server
+    state: started
 
 - name: stop rabbitmq-server
-  service: name=rabbitmq-server state=stopped
-
+  service:
+    name: rabbitmq-server
+    state: stopped

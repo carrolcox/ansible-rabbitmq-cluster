@@ -1,5 +1,6 @@
 ---
-- name: rabbitmq default file
+
+- name: RabbitMQ config files
   template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
@@ -7,7 +8,6 @@
     group: root
     mode: 0644
   with_items:
-    - { src: etc/default/rabbitmq-server.j2 , dest: /etc/default/rabbitmq-server }
     - { src: etc/rabbitmq/rabbitmq.config.j2, dest: /etc/rabbitmq/rabbitmq.config }
     - { src: etc/rabbitmq/rabbitmq-env.conf.j2, dest: /etc/rabbitmq/rabbitmq-env.conf }
   notify:

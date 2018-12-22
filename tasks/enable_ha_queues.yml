@@ -1,10 +1,11 @@
 ---
-- name: check if ha-mode is already enabled
+
+- name: Check if HA-mode is already enabled
   shell: rabbitmqctl list_policies
   register: list_policies
   changed_when: false
 
-- name: set ha-mode to exactly two nodes for all queues for backup
+- name: Set HA-mode to exactly two nodes for all queues for backup
   shell: rabbitmqctl set_policy ha-exactly-two ".*" '{"ha-mode":"exactly","ha-params":2,"ha-sync-mode":"automatic"}'
   register: res
   failed_when: res.rc != 0
