@@ -1,40 +1,11 @@
 ---
-- name: install gdebi
+
+- name: Install Erlang packages
   apt:
-    update_cache: yes
-    force: yes
-    pkg: gdebi
+    name: "{{ erlang_packages }}"
     state: present
 
-- name: Check if esl-erlang is installed
-  command: dpkg-query -W esl-erlang
-  register: erlang_pkg_check
-  ignore_errors: yes
-  changed_when: false
-
-- name: Download esl-erlang
-  get_url: 
-    url: "{{ erlang_download_url }}"
-    dest: "/root/{{ erlang_pkg_name }}"
-  when: erlang_pkg_check.stdout.find("{{ erlang_version }}") == -1
-
-- name: install esl-erlang
-  command: gdebi -n "/root/{{ erlang_pkg_name }}"
-  when: erlang_pkg_check.stdout.find("{{ erlang_version }}") == -1
-
-- name: install rabbitmq-server
+- name: Install RabbitMQ packages
   apt:
-    update_cache: yes
-    force: yes
-    pkg: "{{ item }}"
+    name: "{{ rabbitmq_packages }}"
     state: present
-  with_items:
-    - rabbitmq-server
-
-- name: customize logrotate rules
-  template:
-    src: etc/logrotate.d/rabbitmq-server.j2
-    dest: /etc/logrotate.d/rabbitmq-server
-    owner: root
-    group: root
-    mode: 0644
