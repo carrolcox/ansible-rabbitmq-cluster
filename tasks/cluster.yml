@@ -14,4 +14,4 @@
   changed_when: false
 
 - include_tasks: join_cluster.yml
-  when: cluster_status.stdout.find("rabbit@{{ rabbitmq_cluster_master }}") == -1 and (ansible_hostname != rabbitmq_cluster_master)
+  when: "cluster_status.stdout.find('rabbit@' ~ rabbitmq_cluster_master) == -1 and (ansible_hostname != rabbitmq_cluster_master)"
