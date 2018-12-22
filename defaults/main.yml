@@ -18,6 +18,10 @@ rabbitmq_packages:
 
 # cluster
 rabbitmq_create_cluster: yes
+
+# We just need one of installed hosts to be cluster join endpoint - will choose first node of "rabbitmq" inventory group
+rabbitmq_cluster_master: "{{ hostvars[groups['rabbitmq'][0]]['ansible_hostname'] }}"
+
 # Erlang cookie is just a string of alphanumeric characters up to 255 chars
 rabbitmq_erlang_cookie: 00000000000000000000
 # https://www.rabbitmq.com/configure.html#define-environment-variables
