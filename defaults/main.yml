@@ -30,10 +30,6 @@ rabbitmq_erlang_cookie: 00000000000000000000
 # Note that it is not possible to switch between using short and long names without resetting the node.
 rabbitmq_use_longname: 'false'
 
-# log rotate
-rabbitmq_logrotate_period: weekly
-rabbitmq_logrotate_amount: 20
-
 # https://www.rabbitmq.com/install-debian.html
 # The main setting that needs adjustment is the max number of open files, also known as ulimit -n.
 # The default value on many operating systems is too low for a messaging broker (eg. 1024 on several Linux distributions).
