@@ -33,7 +33,8 @@ rabbitmq_packages:
 
 # cluster
 rabbitmq_create_cluster: yes
-rabbitmq_erlang_cookie: WKRBTTEQRYPTQOPUKSVF
+# Erlang cookie is just a string of alphanumeric characters up to 255 chars
+rabbitmq_erlang_cookie: 00000000000000000000
 # https://www.rabbitmq.com/configure.html#define-environment-variables
 # When set to true this will cause RabbitMQ to use fully qualified names to identify nodes.
 # This may prove useful on EC2.
